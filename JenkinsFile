@@ -8,16 +8,7 @@ pipeline{
                 }
             }
         }
-         stage('Deploy Docker Image') {
-            steps {
-                script {
-                withCredentials([string(credentialsId: 'pkjack', variable: 'dockerhub')]) {
-    sh 'docker login -u pkjack -p ${dockerhub}'
-}
-                 sh 'docker push pkjack/my-app-1.0'
-                }
-            }
-        }
+        
         
  stage('Deploy App on k8s') {
       steps {
