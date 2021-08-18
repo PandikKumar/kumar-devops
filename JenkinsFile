@@ -10,18 +10,14 @@ pipeline{
         }
         
         
- stage('Deploy App on k8s') {
-      steps {
-            script {
-                try{
-                    sh 'kubectl apply -f .'
-                }catch(error){
-                    sh 'kubectl create -f .'
-            }
+ node {
+  stage('Apply Kubernetes files') {
+  kubeconfig(credentialsId: 'K8sConfig', serverUrl: 'https://api-devkops-k8s-local-d6446n-439611627.ap-south-1.elb.amazonaws.com') {
+    // some block
+	sh 'kubectl apply -f .'
+	}
+  }
 }
-        }
-      
-    }
 	
     }
 	}
