@@ -14,9 +14,9 @@ pipeline{
       steps {
             script {
                 try{
-                    sh "kubectl create -f ."
+                    sh "/home/ec2-user/kubectl create -f ."
                 }catch(error){
-                    sh "kubectl create -f ."
+                    sh "/home/ec2-user/kubectl create -f ."
             }
 }
         }
