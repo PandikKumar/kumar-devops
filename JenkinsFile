@@ -1,22 +1,16 @@
 pipeline{
     agent any
-     node{ 
+    
      stages {
         stage('Build Docker Image') {
             steps {
                 script {
-                  sh 'docker build -t pkjack/my-app-1.0 .'
+                  sh 'kubectl apply -f .'
                 }
             }
         }
         
      
-    stage('Apply Kubernetes files') {
-    withKubeConfig(credentialsId: 'K8sConfig', serverUrl: 'https://api-devkops-k8s-local-d6446n-439611627.ap-south-1.elb.amazonaws.com') {
-    // some block
-	sh 'kubectl apply -f .'
-	}
-  }
-  }
+  
 }
 }
